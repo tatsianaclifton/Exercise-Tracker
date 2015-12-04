@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+    font-family: Courier New;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    width:70%;
+    margin-right: auto;
+    margin-left: auto;
+    color:#333;
+    background-color: #F9F8F6;
+}
+
+.button {
+    font: bold 16px Courier New;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 3px 7px 3px 7px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
+table {
+    width: 50%;
+    margin-left:auto; 
+    margin-right:auto;
+    border-width: 2px;
+    border-collapse: collapse;
+    border-style: solid;
+}
+
+th, td, tr {
+    border-width: 2px;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+}
