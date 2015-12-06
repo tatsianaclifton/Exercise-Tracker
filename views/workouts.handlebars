@@ -9,13 +9,15 @@
         <label for="weight">Weights Used:</label>
         <input type = "text" name = "weight" id = "weight"><br><br>
         <label for="date">Date:</label>
-        <input type = "text" name = "date" id = "date"><br><br>
+        <input type = "text" name = "date" id = "date" placeholder = "YYYY-MM-DD"><br><br>
         <label for="lbs">Measurement Units:</label>
-        <input type = "radio" name = "lbs" value = "0" id = "lbs">kg
-        <input type = "radio" name = "lbs" value = "1" id = "lbs">lb<br><br>
-        <input type = "submit" name = "Add Workout" value = "Add Workout" id = "submit"><br><br><br>   
+        <input type = "radio" name = "lbs" value = "0" id = "lbs" checked = "checked">kgs
+        <input type = "radio" name = "lbs" value = "1" id = "lbs">lbs<br><br>
+        <input type = "submit" name = "AddWorkout" value = "AddWorkout" id = "submit"><br><br><br>   
     </form>
 </div>
+
+<div id = "error"></div>
 
 <div class = "table">
 <table>

@@ -55,75 +55,60 @@ app.get('/workouts', function(req, res, next){
     });
 });  
 
-//get a singe workout
-app.get('/workout', function(req, res, next){
-    pool.query("SELECT * FROM workouts WHERE id = ?",  [req.query.id], function(err, rows, fields){
-        if(err){
-            next(err);
-            return;
-        }
-        res.send(JSON.stringify(rows));
-    });  
-});
-
 //handles add, edit and delete workouts
-app.post('/', function(req, res){
-    if (req.body['Add Workout']){
-        pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function(err, result){
+app.post('/', function(req, res, next){
+    if (req.body.action === 'AddWorkout'){
+        pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)", [req.body.fields.name, req.body.fields.reps, req.body.fields.weight, req.body.fields.date, req.body.fields.lbs], function(err, result){
             if(err){
                 next(err);
                 return;
             }
-            pool.query("SELECT * FROM workouts WHERE id = ?",  [req.query.id], function(err, rows, fields){
+            pool.query("SELECT * FROM workouts", function(err, rows, fields){
                 if(err){
                     next(err);
                     return;
                 }
-        res.send(JSON.stringify(rows));
+                res.send(JSON.stringify(rows));
             }); 
         });
     }
     
-    if (req.body['Edit Workout']){
+    if (req.body['Edit']){
+        context = {}
         pool.query("SELECT * FROM workouts WHERE id = ?", [req.body.id], function(err, rows, fields){
             if(err){
                 next(err);
                 return;
             }
-            context.forEdit = rows;
+            context.edit = rows;
+            res.render('update', context);
+        });
+    }
+    
+    if (req.body['Edited']){
+        context = {};
+        pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs, req.body.id], function(err, result){
+            if(err){
+                next(err);
+	      		return;
+	      	}
             res.render('workouts', context);
-        });
+			});
     }
     
-       if (req.body['Edited Workout']){ 
-            pool.query("UPDATE workouts SET name = ?, reps = ?, weight = ?, date = ?, lbs = ? WHERE id = ?", [req.body.name, req.body.reps, req.body.date, req.body.lbs, req.body.id], function(err, result){
-                if(err){
-                    next(err);
-                    return;
-                }
-                    pool.query("SELECT * FROM workouts", function(err, rows, fields){
-                        if(err){
-                            next(er);
-                            return;
-                        }
-                context.results = rows;
-                res.render('workputs', context);
-            });
-        });
-    }
     
-    if (req.body['Delete Workout']){
+    if (req.body.action === 'DeleteWorkout'){
         pool.query("DELETE FROM workouts WHERE id = ?", [req.body.id], function(err, result){
             if(err){
                 next(err);
                 return;
             }
-            pool.query("SELECT * FROM workouts WHERE id = ?",  [req.query.id], function(err, rows, fields){
+            pool.query("SELECT * FROM workouts", function(err, rows, fields){
                 if(err){
                     next(err);
                     return;
                 }
-        res.send(JSON.stringify(rows));
+                res.send(JSON.stringify(rows));
             }); 
         });
     }

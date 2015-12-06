@@ -1,0 +1,30 @@
+<table>
+	<caption>Edit Workout</caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+            <th>Repetitions</th>
+            <th>Weights</th>
+            <th>Date</th>
+            <th>Units</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each edit}}
+		<tr>
+			<form method="post" action = '/'>
+				<input type="hidden" name="id" value="{{this.id}}">
+				<td><input id="name" type="text" name="name" value="{{this.name}}"></td>
+				<td><input id="reps" type="text" name="reps" value="{{this.reps}}"></td>
+				<td><input id="weight" type="text" name="weight" value="{{this.weight}}"></td>
+				<td><input id="date" type="text" name="date" value="{{this.date}}"></td>
+                <td><input type = "radio" name = "lbs" value = "{{this.lbs}}" id = "kgs" checked = false>kgs
+                    <input type = "radio" name = "lbs" value = "{{this.lbs}}" id = "lbs" checked = false>lbs</td>
+                <td><input type="submit" name="Edited" value="Update"></td>
+			</form>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+
+<script src="update.js"></script>
