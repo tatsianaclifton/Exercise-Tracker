@@ -1,3 +1,8 @@
+/*CS290 Database Interactions Assignment
+  Tatsiana Clifton */
+  
+ /*The script for presenting the form for update workouts*/
+
 if(document.getElementById('kgs').value === "0")
     document.getElementById('kgs').checked = true;
 else 

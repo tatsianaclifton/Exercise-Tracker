@@ -1,3 +1,8 @@
+/*CS290 Database Interactions Assignment
+  Tatsiana Clifton */
+  
+ /*The main file*/
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -38,6 +43,7 @@ app.get('/reset-table',function(req,res,next){
     });
 });
 
+//rout to the page with the form and the table with completed workouts
 app.get('/', function(req, res, next){
 	var context = {};
 	res.render('workouts', context);

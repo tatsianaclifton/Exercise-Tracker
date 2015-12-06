@@ -1,3 +1,8 @@
+/*CS290 Database Interactions Assignment
+  Tatsiana Clifton */
+  
+ /*The script for creating table and handling AJAX requests*/
+
 function buildTable(response){
     var table = document.getElementById('rows');
     table.innerHTML = "";
